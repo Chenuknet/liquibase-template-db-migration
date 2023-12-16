@@ -1,0 +1,38 @@
+plugins {
+
+    id 'org.liquibase.gradle' version '2.2.1'
+}
+
+dependencies {
+
+    liquibaseRuntime 'org.liquibase:liquibase-core:4.25.0'
+    liquibaseRuntime 'info.picocli:picocli:4.7.5'
+    liquibaseRuntime 'jakarta.xml.bind:jakarta.xml.bind-api:4.0.1'
+    liquibaseRuntime('ch.qos.logback:logback-core:1.4.14')
+    liquibaseRuntime('ch.qos.logback:logback-classic:1.4.14')
+    liquibaseRuntime 'org.postgresql:postgresql:42.7.1'
+}
+
+repositories {
+    mavenCentral()
+}
+
+
+liquibase {
+
+    activities {
+        main {
+            // корневой файл для миграции
+            changelogFile "src/main/resources/db/migration/master.xml"
+            // схема для технических таблиц для миграции
+            liquibaseSchemaName "liquibase"
+            classpath "$rootDir/src/main/resources"
+            // для работы ожидается gradle.properties в корне проекта с указанием переменных:  jdbcUrl, jdbcUsername, jdbcPassword
+            url project.ext.jdbcUrl
+            username project.ext.jdbcUsername
+            password project.ext.jdbcPassword
+        }
+        // Настройка которая запускается по умолчанию
+        runList = 'main'
+    }
+}
