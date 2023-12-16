@@ -5,10 +5,10 @@
         xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog https://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-latest.xsd">
 
 
-    <changeSet author="ab020686ssv" id="1">
+    <changeSet author="Ваш логин" id="1">
         <tagDatabase tag="migration.1.0.0"/>
     </changeSet>
-    <changeSet author="ab020686ssv" id="2">
+    <changeSet author="Ваш логин" id="2">
         <sqlFile path="db/migration/1.0.0/migration.sql"/>
         <rollback>
             <sqlFile path="db/migration/1.0.0/rollback.sql"/>
